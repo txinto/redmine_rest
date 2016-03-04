@@ -1,3 +1,3 @@
 module RedmineRest
-  VERSION = '0.2.0-user.find.by.name'.freeze
+  VERSION = '0.2.0-issue.grouping'.freeze
 end

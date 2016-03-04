@@ -38,6 +38,20 @@ module RedmineRest
         def group_by_author_id
           group_by { |i| i.author.id }
         end
+
+        # By assigned_to
+
+        def group_by_assigned_to
+          group_by(&:assigned_to)
+        end
+
+        def group_by_assigned_to_name
+          group_by { |i| i.assigned_to.name }
+        end
+
+        def group_by_assigned_to_id
+          group_by { |i| i.assigned_to.id }
+        end
       end
     end
   end

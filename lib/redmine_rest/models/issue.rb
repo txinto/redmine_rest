@@ -15,6 +15,25 @@ module RedmineRest
       has_one :assigned_to, class_name: User
       has_one :project, class_name: Project
       has_one :version, class_name: Version
+
+      #
+      # methods for collections
+      #
+      class IssueCollection < ActiveResource::Collection
+        def group_by_project
+          group_by(&:project)
+        end
+
+        def group_by_project_name
+          group_by { |i| i.project.name }
+        end
+
+        def group_by_project_id
+          group_by { |i| i.project.id }
+        end
+      end
+
+      self.collection_parser = IssueCollection
     end
   end
 end

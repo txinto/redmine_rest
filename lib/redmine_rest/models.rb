@@ -5,7 +5,7 @@ module RedmineRest
   # Namespace for models + some self-methods
   #
   module Models
-    LIST = [Issue, User, Project, IssueStatus, TimeEntry].freeze
+    LIST = [Issue, User, Project, IssueStatus, TimeEntry, Relation].freeze
 
     def self.configure_models(params)
       ModelConfigurator.new.configure_models(params)

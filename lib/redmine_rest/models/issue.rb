@@ -18,6 +18,19 @@ module RedmineRest
       has_one :assigned_to, class_name: User
       has_one :project, class_name: Project
       has_one :version, class_name: Version
+
+      def self.find(what, options = {})
+        options[:params] = {} unless options[:params]
+        params = options[:params]
+
+        if params[:include]
+          params[:include] += 'journals'
+        else # doubling is not bad
+          params[:include] = ',journals'
+        end
+
+        super(what, options)
+      end
     end
   end
 end

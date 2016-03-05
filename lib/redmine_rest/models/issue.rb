@@ -19,15 +19,22 @@ module RedmineRest
       has_one :project, class_name: Project
       has_one :version, class_name: Version
       has_many :children, class_name: Issue
+      has_many :watchers, class_name: User
 
+      #
+      # Adds journals, relations, children and watchers to request.
+      #
+      # Be careful, even if issue has watchers, it won't be loaded,
+      # because REST API can load them only after v2.3.0 (see Redmine docs)
+      #
       def self.find(what, options = {})
         options[:params] = {} unless options[:params]
         params = options[:params]
 
         if params[:include]
-          params[:include] += 'journals,relations,children'
+          params[:include] += ',journals,relations,children,watchers'
         else # doubling is not bad
-          params[:include] = ',journals,relations,children'
+          params[:include] = 'journals,relations,children,watchers'
         end
 
         super(what, options)

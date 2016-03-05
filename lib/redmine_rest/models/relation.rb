@@ -21,10 +21,14 @@ module RedmineRest
       set_prefix
 
       def self.find(what, options = {})
-        fail('Redmine REST doesnt provide list of all relations') if what == :all
-        self.prefix = '/'
-        super
-        set_prefix
+        if what == :all
+          super
+        else
+          self.prefix = '/'
+          result = super
+          set_prefix
+          result
+        end
       end
 
       private

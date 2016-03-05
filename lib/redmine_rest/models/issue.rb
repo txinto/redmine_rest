@@ -42,8 +42,15 @@ module RedmineRest
         super(what, options)
       end
 
-      def relations
-        attributes[:relations]
+      #
+      # Methods for necessery attributes.
+      #
+      # I guess it's equal to `.<attribute>?`
+      #
+      [:author, :assigned_to, :project, :version, :children, :watchers, :relations].each do |attr|
+        define_method(attr) do
+          attributes[attr]
+        end
       end
     end
   end

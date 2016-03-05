@@ -3,6 +3,7 @@ require 'active_resource'
 require_relative 'user'
 require_relative 'project'
 require_relative 'version'
+require_relative 'relation'
 require_relative 'collections/issue'
 
 module RedmineRest
@@ -20,6 +21,7 @@ module RedmineRest
       has_one :version, class_name: Version
       has_many :children, class_name: Issue
       has_many :watchers, class_name: User
+      has_many :relations, class_name: Relation
 
       #
       # Adds journals, relations, children and watchers to request.
@@ -38,6 +40,10 @@ module RedmineRest
         end
 
         super(what, options)
+      end
+
+      def relations
+        attributes[:relations]
       end
     end
   end

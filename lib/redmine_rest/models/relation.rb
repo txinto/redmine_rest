@@ -14,9 +14,17 @@ module RedmineRest
                :validate_issue_id,
                :validate_issue_to_id
 
+      def self.set_prefix
+        self.prefix = '/issues/:issue_id'
+      end
+
+      set_prefix
+
       def self.find(what, options = {})
         fail('Redmine REST doesnt provide list of all relations') if what == :all
+        self.prefix = '/'
         super
+        set_prefix
       end
 
       private

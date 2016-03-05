@@ -19,6 +19,7 @@ module RedmineRest
       has_one :project, class_name: Project
       has_one :version, class_name: Version
       has_many :children, class_name: Issue
+      has_many :watchers, class_name: User
 
       def self.find(what, options = {})
         options[:params] = {} unless options[:params]

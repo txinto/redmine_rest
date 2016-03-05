@@ -25,9 +25,9 @@ module RedmineRest
         params = options[:params]
 
         if params[:include]
-          params[:include] += 'journals,relations,children'
+          params[:include] += ',journals,relations,children,watchers'
         else # doubling is not bad
-          params[:include] = ',journals,relations,children'
+          params[:include] = 'journals,relations,children,watchers'
         end
 
         super(what, options)

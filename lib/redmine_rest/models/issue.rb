@@ -21,6 +21,12 @@ module RedmineRest
       has_many :children, class_name: Issue
       has_many :watchers, class_name: User
 
+      #
+      # Adds journals, relations, children and watchers to request.
+      #
+      # Be careful, even if issue has watchers, it won't be loaded,
+      # because REST API can load them only after v2.3.0 (see Redmine docs)
+      #
       def self.find(what, options = {})
         options[:params] = {} unless options[:params]
         params = options[:params]

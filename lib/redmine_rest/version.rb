@@ -1,3 +1,3 @@
 module RedmineRest
-  VERSION = '0.4.0-caching.statuses'.freeze
+  VERSION = '0.4.0-filter.by.name.substring'.freeze
 end

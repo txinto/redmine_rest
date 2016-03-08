@@ -10,7 +10,6 @@ module RedmineRest
     class Version < ActiveResource::Base
       self.format = :xml
       self.collection_parser = Collections::Version
-
     end
   end
 end

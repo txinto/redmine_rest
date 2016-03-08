@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '0.36.0'
 
   spec.add_dependency 'activeresource', '4.0.0'
+  spec.add_dependency 'unicode', '0.4.4.2'
 end

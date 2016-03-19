@@ -1,3 +1,3 @@
 module RedmineRest
-  VERSION = '0.5.0-issue.validations'.freeze
+  VERSION = '0.5.0'.freeze
 end

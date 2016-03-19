@@ -43,15 +43,8 @@ module RedmineRest
         super(what, options)
       end
 
-      #
-      # Methods for necessery attributes.
-      #
-      # I guess it's equal to `.<attribute>?`
-      #
-      [:author, :assigned_to, :project, :version, :children, :watchers, :relations, :parent].each do |attr|
-        define_method(attr) do
-          attributes[attr]
-        end
+      def method_missing(method, *args)
+        args.empty? && !block_given? ? attributes[method] : super
       end
     end
   end

@@ -24,6 +24,8 @@ module RedmineRest
       has_many :watchers, class_name: User
       has_many :relations, class_name: Relation
 
+      validates :subject, :tracker_id, presence: true
+
       #
       # Adds journals, relations, children and watchers to request.
       #

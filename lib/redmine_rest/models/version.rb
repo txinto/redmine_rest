@@ -16,7 +16,7 @@ module RedmineRest
       # Overrides parent method.
       # When we want to fetch one version, we need not to use prefix
       #
-      def self.element_path(id, prefix_options = {}, query_options = nil)
+      def self.element_path(id, _prefix_options = {}, query_options = nil)
         "/versions/#{URI.parser.escape id.to_s}#{format_extension}#{query_string(query_options)}"
       end
     end

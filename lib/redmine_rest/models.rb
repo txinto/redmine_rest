@@ -20,7 +20,10 @@ module RedmineRest
   # Namespace for models + some self-methods
   #
   module Models
-    LIST = [Issue, User, Project, IssueStatus, TimeEntry, Tracker, Relation, Version].freeze
+    LIST = constants
+           .map { |symbol| const_get(symbol) }
+           .find_all { |const| const.is_a?(Class) && const < ActiveResource::Base }
+           .freeze
 
     def self.configure_models(params)
       ModelConfigurator.new.configure_models(params)

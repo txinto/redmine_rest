@@ -46,7 +46,8 @@ module RedmineRest
       end
 
       def method_missing(method, *args)
-        args.empty? && !block_given? ? attributes[method] : super
+        return super if block_given? || method.to_s.end_with?('?') || !args.empty?
+        attributes[method]
       end
     end
   end

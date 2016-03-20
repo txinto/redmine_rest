@@ -39,6 +39,15 @@ module RedmineRest
       def memberships
         Membership.all params: { project_id: id }
       end
+
+      def members(options = {})
+        users = memberships
+                .map { |m| m.user? ? m.user : m.group.reload.users }
+                .flatten
+        users.map(&:reload) if options[:reload]
+
+        Collections::Base.new(users)
+      end
     end
   end
 end

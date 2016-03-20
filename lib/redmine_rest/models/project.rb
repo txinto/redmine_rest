@@ -29,6 +29,10 @@ module RedmineRest
 
         super(scope, options)
       end
+
+      def versions
+        Version.all params: { project_id: id }
+      end
     end
   end
 end

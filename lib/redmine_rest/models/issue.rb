@@ -28,6 +28,10 @@ module RedmineRest
 
       validates :subject, :tracker_id, presence: true
 
+      def tracker_id
+        attributes[:tracker_id] || tracker? && tracker.id
+      end
+
       #
       # Adds journals, relations, children and watchers to request.
       #

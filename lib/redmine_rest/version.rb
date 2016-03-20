@@ -1,3 +1,3 @@
 module RedmineRest
-  VERSION = '0.6.0-project.has.trackers'.freeze
+  VERSION = '0.6.0-version.model'.freeze
 end

@@ -13,9 +13,7 @@ module RedmineRest
 
       def self.find(*args)
         fail('Trackers can be loaded as :all only') unless args.size == 1 && args.first == :all
-
-        return @trackers if @trackers
-        @trackers = super
+        super
       end
     end
   end

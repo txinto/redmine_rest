@@ -13,9 +13,7 @@ module RedmineRest
 
       def self.find(*args)
         fail('Issue statuses can be loaded as :all only') unless args.size == 1 && args.first == :all
-
-        return @statuses if @statuses
-        @statuses = super
+        super
       end
     end
   end

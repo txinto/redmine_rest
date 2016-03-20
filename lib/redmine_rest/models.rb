@@ -1,4 +1,19 @@
+require 'active_resource'
+
 Dir[File.expand_path('../models/*.rb', __FILE__)].each { |f| require f }
+
+module ActiveResource
+  #
+  # some monkey-patching
+  #
+  class Base
+    def self.find_by_id(id)
+      find(id)
+    rescue ActiveResource::ResourceNotFound
+      nil
+    end
+  end
+end
 
 module RedmineRest
   #

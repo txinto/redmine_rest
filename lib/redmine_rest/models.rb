@@ -1,11 +1,29 @@
+require 'active_resource'
+
 Dir[File.expand_path('../models/*.rb', __FILE__)].each { |f| require f }
+
+module ActiveResource
+  #
+  # some monkey-patching
+  #
+  class Base
+    def self.find_by_id(id)
+      find(id)
+    rescue ActiveResource::ResourceNotFound
+      nil
+    end
+  end
+end
 
 module RedmineRest
   #
   # Namespace for models + some self-methods
   #
   module Models
-    LIST = [Issue, User, Project, IssueStatus, TimeEntry, Tracker, Relation].freeze
+    LIST = constants
+           .map { |symbol| const_get(symbol) }
+           .find_all { |const| const.is_a?(Class) && const < ActiveResource::Base }
+           .freeze
 
     def self.configure_models(params)
       ModelConfigurator.new.configure_models(params)

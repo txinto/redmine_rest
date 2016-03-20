@@ -9,26 +9,18 @@ module RedmineRest
       TYPES = %w(relates duplicates duplicated blocks blocked precedes follows copied_to copied_from).freeze
 
       self.format = :xml
+      self.prefix = '/issues/:issue_id/'
 
       validate :validate_relation_type,
                :validate_issue_id,
                :validate_issue_to_id
 
-      def self.set_prefix
-        self.prefix = '/issues/:issue_id'
-      end
-
-      set_prefix
-
-      def self.find(what, options = {})
-        if what == :all
-          super
-        else
-          self.prefix = '/'
-          result = super
-          set_prefix
-          result
-        end
+      #
+      # Overrides parent method.
+      # When we want to fetch one relation, we need not to use prefix
+      #
+      def self.element_path(id, _prefix_options = {}, query_options = nil)
+        "/relations/#{URI.parser.escape id.to_s}#{format_extension}#{query_string(query_options)}"
       end
 
       private

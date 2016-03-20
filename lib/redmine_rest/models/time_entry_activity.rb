@@ -5,14 +5,15 @@ require_relative 'collections/base'
 module RedmineRest
   module Models
     #
-    # issue status model
+    # time entry activity model
     #
-    class IssueStatus < ActiveResource::Base
+    class TimeEntryActivity < ActiveResource::Base
       self.format = :xml
       self.collection_parser = Collections::Base
+      self.prefix = '/enumerations/'
 
       def self.find(*args)
-        fail('Issue statuses can be loaded as :all only') unless args.size == 1 && args.first == :all
+        fail('Issue priorities can be loaded as :all only') unless args.size == 1 && args.first == :all
         super
       end
     end

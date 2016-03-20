@@ -1,6 +1,6 @@
 require 'active_resource'
 
-require_relative 'collections/issue_status'
+require_relative 'collections/base'
 
 module RedmineRest
   module Models
@@ -9,7 +9,7 @@ module RedmineRest
     #
     class IssueStatus < ActiveResource::Base
       self.format = :xml
-      self.collection_parser = Collections::IssueStatus
+      self.collection_parser = Collections::Base
 
       def self.find(*args)
         fail('Issue statuses can be loaded as :all only') unless args.size == 1 && args.first == :all

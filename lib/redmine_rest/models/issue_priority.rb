@@ -1,6 +1,6 @@
 require 'active_resource'
 
-require_relative 'collections/issue_priority'
+require_relative 'collections/base'
 
 module RedmineRest
   module Models
@@ -9,7 +9,7 @@ module RedmineRest
     #
     class IssuePriority < ActiveResource::Base
       self.format = :xml
-      self.collection_parser = Collections::IssuePriority
+      self.collection_parser = Collections::Base
       self.prefix = '/enumerations/'
 
       def self.find(*args)

@@ -1,6 +1,6 @@
 require 'active_resource'
 
-require_relative 'collections/version'
+require_relative 'collections/base'
 
 module RedmineRest
   module Models
@@ -9,7 +9,7 @@ module RedmineRest
     #
     class Version < ActiveResource::Base
       self.format = :xml
-      self.collection_parser = Collections::Version
+      self.collection_parser = Collections::Base
       self.prefix = '/projects/:project_id/'
 
       #

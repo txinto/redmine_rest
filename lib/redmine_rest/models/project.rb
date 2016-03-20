@@ -1,7 +1,7 @@
 require 'active_resource'
 
 require_relative 'tracker'
-require_relative 'collections/project'
+require_relative 'collections/base'
 
 module RedmineRest
   module Models
@@ -10,7 +10,7 @@ module RedmineRest
     #
     class Project < ActiveResource::Base
       self.format = :xml
-      self.collection_parser = Collections::Project
+      self.collection_parser = Collections::Base
 
       has_many :trackers, class_name: Tracker
 

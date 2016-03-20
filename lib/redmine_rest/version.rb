@@ -1,3 +1,3 @@
 module RedmineRest
-  VERSION = '0.6.0-find.by.id'.freeze
+  VERSION = '0.6.0-issue.priority.model'.freeze
 end

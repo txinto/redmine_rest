@@ -1,3 +1,3 @@
 module RedmineRest
-  VERSION = '0.6.0-project.members'.freeze
+  VERSION = '0.6.0'.freeze
 end

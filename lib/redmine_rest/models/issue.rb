@@ -5,6 +5,7 @@ require_relative 'project'
 require_relative 'version'
 require_relative 'relation'
 require_relative 'tracker'
+require_relative 'attachment'
 require_relative 'collections/issue'
 
 module RedmineRest
@@ -20,11 +21,12 @@ module RedmineRest
       has_one :author, class_name: User
       has_one :assigned_to, class_name: User
       has_one :project, class_name: Project
-      has_one :version, class_name: Version
+      has_one :fixed_version, class_name: Version
       has_one :parent, class_name: Issue
       has_many :children, class_name: Issue
       has_many :watchers, class_name: User
       has_many :relations, class_name: Relation
+      has_many :attachments, class_name: Attachment
 
       validates :subject, :tracker_id, presence: true
 
@@ -43,9 +45,9 @@ module RedmineRest
         params = options[:params]
 
         if params[:include]
-          params[:include] += ',journals,relations,children,watchers'
+          params[:include] += ',journals,relations,children,watchers,attachments'
         else # doubling is not bad
-          params[:include] = 'journals,relations,children,watchers'
+          params[:include] = 'journals,relations,children,watchers,attachments'
         end
 
         super(what, options)

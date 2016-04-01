@@ -7,6 +7,7 @@ require_relative 'relation'
 require_relative 'tracker'
 require_relative 'attachment'
 require_relative 'collections/issue'
+require_relative 'issue/journal'
 
 module RedmineRest
   module Models
@@ -27,6 +28,7 @@ module RedmineRest
       has_many :watchers, class_name: User
       has_many :relations, class_name: Relation
       has_many :attachments, class_name: Attachment
+      has_many :journals, class_name: Journal
 
       validates :subject, :tracker_id, presence: true
 

@@ -19,6 +19,13 @@ module RedmineRest
             property == 'relation'
           end
 
+          def method_missing(m, *args)
+            m = m.to_s
+
+            return super unless args.empty? && m.to_s.end_with?('?')
+            name == m.to_s[0..-2]
+          end
+
           def to_s
             if attribute?
               "#{name}: #{old_value.nil? ? 'nil' : old_value} -> #{new_value.nil? ? 'nil' : new_value}"

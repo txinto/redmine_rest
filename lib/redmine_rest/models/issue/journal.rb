@@ -1,4 +1,4 @@
-require_relative 'detail'
+require_relative 'journal_detail'
 
 module RedmineRest
   module Models

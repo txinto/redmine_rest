@@ -50,6 +50,7 @@ module RedmineRest
           m.site = params[:site]
           m.user = params[:user]
           m.password = params[:password]
+          m.ssl_options[:verify_mode] = params[:verify_mode]
         end
       end
 
